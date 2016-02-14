@@ -75,7 +75,7 @@ sb_new (sb *ptr)
 void
 sb_kill (sb *ptr)
 {
-  free (ptr->ptr);
+  XDELETEVEC (ptr->ptr);
 }
 
 /* Add the sb at s to the end of the sb at ptr.  */
