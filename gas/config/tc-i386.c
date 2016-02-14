@@ -187,17 +187,19 @@ static void handle_large_common (int small ATTRIBUTE_UNUSED);
 
 static const char *default_arch = DEFAULT_ARCH;
 
+enum rc_type
+{
+  rne = 0,
+  rd,
+  ru,
+  rz,
+  saeonly
+};
+
 /* This struct describes rounding control and SAE in the instruction.  */
 struct RC_Operation
 {
-  enum rc_type
-    {
-      rne = 0,
-      rd,
-      ru,
-      rz,
-      saeonly
-    } type;
+     enum rc_type type;
   int operand;
 };
 
@@ -276,6 +278,13 @@ enum i386_error
     try_vector_disp8
   };
 
+enum displacement_type
+{
+  disp_encoding_default = 0,
+  disp_encoding_8bit,
+  disp_encoding_32bit
+};
+
 struct _i386_insn
   {
     /* TM holds the template for the insn were currently assembling.  */
@@ -347,12 +356,7 @@ struct _i386_insn
     unsigned int swap_operand;
 
     /* Prefer 8bit or 32bit displacement in encoding.  */
-    enum
-      {
-	disp_encoding_default = 0,
-	disp_encoding_8bit,
-	disp_encoding_32bit
-      } disp_encoding;
+      enum displacement_type disp_encoding;
 
     /* REP prefix.  */
     const char *rep_prefix;
