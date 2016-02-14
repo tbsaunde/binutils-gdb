@@ -4659,7 +4659,7 @@ match_template (void)
   unsigned int j;
   unsigned int found_cpu_match;
   unsigned int check_register;
-  enum i386_error specific_error = 0;
+  enum i386_error specific_error = operand_size_mismatch;
 
 #if MAX_OPERANDS != 5
 # error "MAX_OPERANDS must be 5."
