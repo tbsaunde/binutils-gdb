@@ -230,7 +230,7 @@ struct app_save
   int          state;
   int          old_state;
   const char * out_string;
-  char         out_buf[sizeof (out_buf)];
+  char         out_buf[20];
   int          add_newlines;
   char *       saved_input;
   size_t       saved_input_len;
