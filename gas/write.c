@@ -1379,7 +1379,7 @@ compress_frag (struct z_stream_s *strm, const char *contents, int in_size,
         }
       if (avail_out <= 0)
 	as_fatal (_("can't extend frag"));
-      next_out = obstack_next_free (ob);
+      next_out = (char *) obstack_next_free (ob);
       obstack_blank_fast (ob, avail_out);
       out_size = compress_data (strm, &contents, &in_size,
 				&next_out, &avail_out);
@@ -1513,7 +1513,7 @@ compress_debug (bfd *abfd, asection *sec, void *xxx ATTRIBUTE_UNUSED)
 	}
       if (avail_out <= 0)
 	as_fatal (_("can't extend frag"));
-      next_out = obstack_next_free (ob);
+      next_out = (char *) obstack_next_free (ob);
       obstack_blank_fast (ob, avail_out);
       x = compress_finish (strm, &next_out, &avail_out, &out_size);
       if (x < 0)

@@ -8444,12 +8444,13 @@ i386_index_check (const char *operand_string)
 		  && current_templates->end[-1].operand_types[1]
 		     .bitfield.baseindex))
 	    type = current_templates->end[-1].operand_types[1];
-	  expected_reg = hash_find (reg_hash,
-				    di_si[addr_mode][type.bitfield.esseg]);
+	  expected_reg
+	    = (reg_entry *) hash_find (reg_hash,
+				       di_si[addr_mode][type.bitfield.esseg]);
 
 	}
       else
-	expected_reg = hash_find (reg_hash, bx[addr_mode]);
+	expected_reg = (reg_entry *) hash_find (reg_hash, bx[addr_mode]);
 
       if (i.base_reg != expected_reg
 	  || i.index_reg
@@ -10109,7 +10110,7 @@ show_arch (FILE *stream, int ext, int check)
 	      *p++ = ',';
 	      *p++ = ' ';
 	    }
-	  p = mempcpy (p, name, len);
+	  p = (char *) mempcpy (p, name, len);
 	}
       else
 	{
@@ -10122,7 +10123,7 @@ show_arch (FILE *stream, int ext, int check)
 
 	  gas_assert (left >= 0);
 
-	  p = mempcpy (p, name, len);
+	  p = (char *) mempcpy (p, name, len);
 	}
     }
 

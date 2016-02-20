@@ -245,7 +245,7 @@ generic_dwarf2_emit_offset (symbolS *symbol, unsigned int size)
 static struct line_subseg *
 get_line_subseg (segT seg, subsegT subseg, bfd_boolean create_p)
 {
-  struct line_seg *s = seg_info (seg)->dwarf2_line_seg;
+  struct line_seg *s = (struct line_seg *) seg_info (seg)->dwarf2_line_seg;
   struct line_subseg **pss, *lss;
 
   if (s == NULL)

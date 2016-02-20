@@ -210,7 +210,7 @@ frag_more (size_t nchars)
 
   frag_alloc_check (&frchain_now->frch_obstack);
   frag_grow (nchars);
-  retval = obstack_next_free (&frchain_now->frch_obstack);
+  retval = (char *) obstack_next_free (&frchain_now->frch_obstack);
   obstack_blank_fast (&frchain_now->frch_obstack, nchars);
   return retval;
 }
@@ -257,7 +257,7 @@ frag_var (relax_stateT type, size_t max_chars, size_t var,
   char *retval;
 
   frag_grow (max_chars);
-  retval = obstack_next_free (&frchain_now->frch_obstack);
+  retval = (char *) obstack_next_free (&frchain_now->frch_obstack);
   obstack_blank_fast (&frchain_now->frch_obstack, max_chars);
   frag_var_init (type, max_chars, var, subtype, symbol, offset, opcode);
   return retval;
@@ -274,7 +274,7 @@ frag_variant (relax_stateT type, size_t max_chars, size_t var,
 {
   char *retval;
 
-  retval = obstack_next_free (&frchain_now->frch_obstack);
+  retval = (char *) obstack_next_free (&frchain_now->frch_obstack);
   frag_var_init (type, max_chars, var, subtype, symbol, offset, opcode);
 
   return retval;
