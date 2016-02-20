@@ -436,12 +436,12 @@ const char line_separator_chars[] = ";";
 
 /* Chars that can be used to separate mant from exp in floating point
    nums.  */
-const char EXP_CHARS[] = "eE";
+extern const char EXP_CHARS[] = "eE";
 
 /* Chars that mean this number is a floating point constant
    As in 0f12.456
    or    0d1.2345e12.  */
-const char FLT_CHARS[] = "fFdDxX";
+extern const char FLT_CHARS[] = "fFdDxX";
 
 /* Tables for lexical analysis.  */
 static char mnemonic_chars[256];
