@@ -1479,7 +1479,7 @@ static void
 brcnt_emit (void)
 {
   /* Emit call to "increment" routine.  */
-  ctrl_fmt (BR_CNT_FUNC, CALL, 1);
+  ctrl_fmt ((char *) BR_CNT_FUNC, CALL, 1);
   /* Emit inline counter to be incremented.  */
   emit (0);
 }
