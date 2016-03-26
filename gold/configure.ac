@@ -483,9 +483,6 @@ AM_CONDITIONAL(IFUNC_STATIC, test "$gold_cv_lib_glibc_ifunc" = "both")
 
 AM_BINUTILS_WARNINGS
 
-WARN_CXXFLAGS=`echo ${WARN_CFLAGS} | sed -e 's/-Wstrict-prototypes//' -e 's/-Wmissing-prototypes//' -e 's/-Wshadow//'`
-AC_SUBST(WARN_CXXFLAGS)
-
 AC_ARG_WITH(gold-ldflags,
 [  --with-gold-ldflags=FLAGS  additional link flags for gold],
 [if test "$withval" = "no" -o "$withval" = "yes"; then
