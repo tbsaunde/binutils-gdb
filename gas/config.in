@@ -67,6 +67,10 @@
    don't. */
 #undef HAVE_DECL_ASPRINTF
 
+/* Define to 1 if you have the declaration of `basename(char *)', and to 0 if
+   you don't. */
+#undef HAVE_DECL_BASENAME
+
 /* Define to 1 if you have the declaration of `free', and to 0 if you don't.
    */
 #undef HAVE_DECL_FREE
