@@ -4967,6 +4967,7 @@ else
 fi
 
 
+export CC="${CXX}"
 ac_ext=c
 ac_cpp='$CPP $CPPFLAGS'
 ac_compile='$CC -c $CFLAGS $CPPFLAGS conftest.$ac_ext >&5'
@@ -11504,7 +11505,7 @@ else
   lt_dlunknown=0; lt_dlno_uscore=1; lt_dlneed_uscore=2
   lt_status=$lt_dlunknown
   cat > conftest.$ac_ext <<_LT_EOF
-#line 11507 "configure"
+#line 11508 "configure"
 #include "confdefs.h"
 
 #if HAVE_DLFCN_H
@@ -11610,7 +11611,7 @@ else
   lt_dlunknown=0; lt_dlno_uscore=1; lt_dlneed_uscore=2
   lt_status=$lt_dlunknown
   cat > conftest.$ac_ext <<_LT_EOF
-#line 11613 "configure"
+#line 11614 "configure"
 #include "confdefs.h"
 
 #if HAVE_DLFCN_H
@@ -17996,8 +17997,8 @@ fi
 cat >>confdefs.h <<_ACEOF
 #define HAVE_DECL_ASPRINTF $ac_have_decl
 _ACEOF
-ac_fn_c_check_decl "$LINENO" "basename" "ac_cv_have_decl_basename" "$ac_includes_default"
-if test "x$ac_cv_have_decl_basename" = x""yes; then :
+ac_fn_c_check_decl "$LINENO" "basename(char *)" "ac_cv_have_decl_basename_char_p_" "$ac_includes_default"
+if test "x$ac_cv_have_decl_basename_char_p_" = x""yes; then :
   ac_have_decl=1
 else
   ac_have_decl=0

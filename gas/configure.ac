@@ -36,6 +36,7 @@ AM_INIT_AUTOMAKE
 
 AC_PROG_CC
 AC_PROG_CXX
+export CC="${CXX}"
 AC_GNU_SOURCE
 AC_USE_SYSTEM_EXTENSIONS
 
@@ -878,7 +879,7 @@ GAS_CHECK_DECL_NEEDED(malloc, f, char *(*f)(), $gas_test_headers)
 GAS_CHECK_DECL_NEEDED(sbrk, f, char *(*f)(), $gas_test_headers)
 GAS_CHECK_DECL_NEEDED(strstr, f, char *(*f)(), $gas_test_headers)
 
-AC_CHECK_DECLS([free, getenv, malloc, mempcpy, realloc, stpcpy, strstr, vsnprintf, asprintf, basename])
+AC_CHECK_DECLS([free, getenv, malloc, mempcpy, realloc, stpcpy, strstr, vsnprintf, asprintf, basename(char *)])
 
 BFD_BINARY_FOPEN
 
