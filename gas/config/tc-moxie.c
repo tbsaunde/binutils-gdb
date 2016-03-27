@@ -39,8 +39,8 @@ const pseudo_typeS md_pseudo_table[] =
   {0, 0, 0}
 };
 
-const char FLT_CHARS[] = "rRsSfFdDxXpP";
-const char EXP_CHARS[] = "eE";
+extern const char FLT_CHARS[] = "rRsSfFdDxXpP";
+extern const char EXP_CHARS[] = "eE";
 
 static valueT md_chars_to_number (char * buf, int n);
 
