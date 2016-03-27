@@ -4591,7 +4591,7 @@ lookup_mnemonic (const char *start, int len)
 {
   templates *templ = NULL;
 
-  templ = hash_find_n (aarch64_ops_hsh, start, len);
+  templ = (templates *) hash_find_n (aarch64_ops_hsh, start, len);
   return templ;
 }
 
@@ -4621,7 +4621,7 @@ opcode_lookup (char **str)
   /* Handle a possible condition.  */
   if (end[0] == '.')
     {
-      cond = hash_find_n (aarch64_cond_hsh, end + 1, 2);
+      cond = (aarch64_cond *) hash_find_n (aarch64_cond_hsh, end + 1, 2);
       if (cond)
 	{
 	  inst.cond = cond->value;
@@ -5417,7 +5417,7 @@ parse_operands (char *str, const aarch64_opcode *opcode)
 
 	case AARCH64_OPND_COND:
 	case AARCH64_OPND_COND1:
-	  info->cond = hash_find_n (aarch64_cond_hsh, str, 2);
+	  info->cond = (aarch64_cond *) hash_find_n (aarch64_cond_hsh, str, 2);
 	  str += 2;
 	  if (info->cond == NULL)
 	    {
@@ -7504,7 +7504,7 @@ fill_instruction_hash_table (void)
   while (opcode->name != NULL)
     {
       templates *templ, *new_templ;
-      templ = hash_find (aarch64_ops_hsh, opcode->name);
+      templ = (templates *) hash_find (aarch64_ops_hsh, opcode->name);
 
       new_templ = XNEW (templates);
       new_templ->opcode = opcode;
