@@ -4362,7 +4362,7 @@ subsym_create_or_replace (char *name, char *value)
 static char *
 subsym_lookup (char *name, int nest_level)
 {
-  char *value = hash_find (subsym_hash[nest_level], name);
+  char *value = (char *) hash_find (subsym_hash[nest_level], name);
 
   if (value || nest_level == 0)
     return value;
@@ -4500,7 +4500,7 @@ subsym_substitute (char *line, int forced)
 	    {
 	      /* Use an existing identifier for that label if, available, or
 		 create a new, unique identifier.  */
-	      value = hash_find (local_label_hash[macro_level], name);
+	      value = (char *) hash_find (local_label_hash[macro_level], name);
 	      if (value == NULL)
 		{
 		  char digit[11];
@@ -4521,7 +4521,8 @@ subsym_substitute (char *line, int forced)
 	  else if (value != NULL && *name == '$')
 	    {
 	      subsym_proc_entry *entry = (subsym_proc_entry *) value;
-	      math_proc_entry *math_entry = hash_find (math_hash, name);
+	      math_proc_entry *math_entry = (math_proc_entry *)
+	       	hash_find (math_hash, name);
 	      char *arg1, *arg2 = NULL;
 
 	      *ptr = c;
