@@ -3188,7 +3188,7 @@ md_assemble (char *str)
   this_insn_label_list = seginfo->tc_segment_info_data.label_list;
   seginfo->tc_segment_info_data.label_list = NULL;
 
-  opc_list = hash_find_n (opcode_hash, str, p - str);
+  opc_list = (tic6x_opcode_list *) hash_find_n (opcode_hash, str, p - str);
   if (opc_list == NULL)
     {
       char c = *p;

@@ -4804,7 +4804,7 @@ nds32_find_reloc_table (struct nds32_relocs_pattern *relocs_pattern,
   if (opc)
     {
       /* Branch relax pattern.  */
-      relax_info = hash_find (nds32_relax_info_hash, opc);
+      relax_info = (relax_info_t *) hash_find (nds32_relax_info_hash, opc);
       if (!relax_info)
 	return FALSE;
       fixup_info = relax_info->relax_fixup[range];
@@ -5513,7 +5513,8 @@ nds32_relax_branch_instructions (segT segment, fragS *fragP,
   if (opcode == NULL)
     return adjust;
 
-  relax_info = hash_find (nds32_relax_info_hash, opcode->opcode);
+  relax_info = (relax_info_t *) hash_find (nds32_relax_info_hash,
+					   opcode->opcode);
 
   if (relax_info == NULL)
     return adjust;
@@ -5789,7 +5790,8 @@ md_convert_frag (bfd *abfd ATTRIBUTE_UNUSED, segT sec, fragS *fragP)
 
   if (fragP->tc_frag_data.flag & NDS32_FRAG_RELAXABLE_BRANCH)
     {
-      relax_info = hash_find (nds32_relax_info_hash, opcode->opcode);
+      relax_info = (relax_info_t *) hash_find (nds32_relax_info_hash,
+					       opcode->opcode);
 
       if (relax_info == NULL)
 	return;
@@ -5849,7 +5851,8 @@ md_convert_frag (bfd *abfd ATTRIBUTE_UNUSED, segT sec, fragS *fragP)
   else if (fragP->tc_frag_data.flag & NDS32_FRAG_BRANCH)
     {
       /* Branch instruction adjust and append relocations.  */
-      relax_info = hash_find (nds32_relax_info_hash, opcode->opcode);
+      relax_info = (relax_info_t *) hash_find (nds32_relax_info_hash,
+					       opcode->opcode);
 
       if (relax_info == NULL)
 	return;
@@ -6704,7 +6707,8 @@ nds32_parse_name (char const *name, expressionS *exprP,
 int
 tc_nds32_regname_to_dw2regnum (char *regname)
 {
-  struct nds32_keyword *sym = hash_find (nds32_gprs_hash, regname);
+  struct nds32_keyword *sym = (struct nds32_keyword *)
+    hash_find (nds32_gprs_hash, regname);
 
   if (!sym)
     return -1;

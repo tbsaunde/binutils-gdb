@@ -3974,7 +3974,7 @@ tc_arc_regname_to_dw2regnum (char *regname)
 {
   struct symbol *sym;
 
-  sym = hash_find (arc_reg_hash, regname);
+  sym = (symbol *) hash_find (arc_reg_hash, regname);
   if (sym)
     return S_GET_VALUE (sym);
 

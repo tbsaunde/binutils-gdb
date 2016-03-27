@@ -6316,8 +6316,8 @@ struct fix_24k_store_info
 static int
 fix_24k_sort (const void *a, const void *b)
 {
-  const struct fix_24k_store_info *pos1 = a;
-  const struct fix_24k_store_info *pos2 = b;
+  const struct fix_24k_store_info *pos1 = (const struct fix_24k_store_info *) a;
+  const struct fix_24k_store_info *pos2 = (const struct fix_24k_store_info *) b;
 
   return (pos1->off - pos2->off);
 }

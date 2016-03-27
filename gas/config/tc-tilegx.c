@@ -1242,7 +1242,7 @@ md_assemble (char *str)
   old_char = str[opname_len];
   str[opname_len] = '\0';
 
-  op = hash_find(op_hash, str);
+  op = (struct tilegx_opcode *) hash_find(op_hash, str);
   str[opname_len] = old_char;
   if (op == NULL)
     {
