@@ -749,7 +749,7 @@ static struct hash_control *opcode_hash;
 void
 md_begin (void)
 {
-  tic6x_opcode_id id;
+  int id;
   flagword applicable;
   segT seg;
   subsegT subseg;
@@ -763,7 +763,7 @@ md_begin (void)
       const char *errmsg;
       tic6x_opcode_list *opc = XNEW (tic6x_opcode_list);
 
-      opc->id = id;
+      opc->id = (tic6x_opcode_id) id;
       opc->next = (tic6x_opcode_list_tag *)
        	hash_find (opcode_hash, tic6x_opcode_table[id].name);
       if ((errmsg = hash_jam (opcode_hash, tic6x_opcode_table[id].name, opc))
@@ -1387,7 +1387,7 @@ tic6x_parse_operand (char **p, tic6x_operand *op, unsigned int op_forms,
   /* Check for control register names.  */
   if (!operand_parsed && (op_forms & TIC6X_OP_CTRL))
     {
-      tic6x_ctrl_id crid;
+      int crid;
 
       for (crid = 0; crid < tic6x_ctrl_max; crid++)
 	{
@@ -1401,7 +1401,7 @@ tic6x_parse_operand (char **p, tic6x_operand *op, unsigned int op_forms,
 	      if (is_end_of_line[(unsigned char) *rq] || *rq == ',')
 		{
 		  op->form = TIC6X_OP_CTRL;
-		  op->value.ctrl = crid;
+		  op->value.ctrl = (tic6x_ctrl_id) crid;
 		  operand_parsed = TRUE;
 		  q = rq;
 		  if (!(tic6x_ctrl_table[crid].isa_variants & tic6x_features))
