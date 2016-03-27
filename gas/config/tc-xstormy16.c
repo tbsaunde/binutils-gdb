@@ -53,7 +53,7 @@ const char line_separator_chars[] = "|";
 const char EXP_CHARS[]            = "eE";
 const char FLT_CHARS[]            = "dD";
 
-#define O_fptr_symbol	(O_max + 1)
+#define O_fptr_symbol	((operatorT) (O_max + 1))
 
 #define XSTORMY16_SHORTOPTS ""
 const char * md_shortopts = XSTORMY16_SHORTOPTS;
