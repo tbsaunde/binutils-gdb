@@ -55,6 +55,14 @@
 #include "obj-coff.h"
 #include <math.h>
 
+struct stag_field		/* List of fields.  */
+{
+  const char *name;
+  bfd_vma offset;		/* Of start of this field.  */
+  int bitfield_offset;	/* Of start of this field.  */
+  struct stag *stag;	        /* If field is struct/union.  */
+  struct stag_field *next;
+};
 
 static struct stag
 {
@@ -63,20 +71,20 @@ static struct stag
   bfd_vma size;		        /* Size of struct/union.  */
   int current_bitfield_offset;  /* Temporary for tracking fields.  */
   int is_union;
-  struct stag_field		/* List of fields.  */
-  {
-    const char *name;
-    bfd_vma offset;		/* Of start of this field.  */
-    int bitfield_offset;	/* Of start of this field.  */
-    struct stag *stag;	        /* If field is struct/union.  */
-    struct stag_field *next;
-  } *field;
+  struct stag_field *field;
   /* For nesting; used only in stag construction.  */
   struct stag *inner;	        /* Enclosed .struct.  */
   struct stag *outer;	        /* Enclosing .struct.  */
 } *current_stag = NULL;
 
 #define MAX_LINE 256 /* Lines longer than this are truncated by TI's asm.  */
+
+struct opstruct
+{
+  char buf[MAX_LINE];
+  enum optype type;
+  expressionS exp;
+};
 
 typedef struct _tic54x_insn
 {
@@ -86,12 +94,7 @@ typedef struct _tic54x_insn
   char parmnemonic[MAX_LINE];   /* 2nd mnemonic of parallel insn.  */
 
   int opcount;
-  struct opstruct
-  {
-    char buf[MAX_LINE];
-    enum optype type;
-    expressionS exp;
-  } operands[MAX_OPERANDS];
+  struct opstruct operands[MAX_OPERANDS];
 
   int paropcount;
   struct opstruct paroperands[MAX_OPERANDS];
