@@ -236,7 +236,7 @@ const char line_separator_chars[] = ";";
 
 /* Characters which are used to indicate an exponent in a floating
    point number.  */
-const char EXP_CHARS[] = "eE";
+extern const char EXP_CHARS[] = "eE";
 
 /* Characters which mean that a number is a floating point constant,
    as in 0d1.0.  */
