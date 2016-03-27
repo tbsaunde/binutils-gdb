@@ -263,7 +263,7 @@ rx_strcasestr (const char *string, const char *sub)
 static void
 rx_include (int ignore)
 {
-  FILE * try;
+  FILE * file;
   char * path;
   char * filename;
   const char * current_filename;
@@ -346,12 +346,12 @@ rx_include (int ignore)
      4 .Try a directory specifed by the INC100 environment variable.  */
 
   if (IS_ABSOLUTE_PATH (f))
-    try = fopen (path = f, FOPEN_RT);
+    file = fopen (path = f, FOPEN_RT);
   else
     {
       char * env = getenv ("INC100");
 
-      try = NULL;
+      file = NULL;
 
       len = strlen (current_filename);
       if ((size_t) include_dir_maxlen > len)
@@ -371,39 +371,39 @@ rx_include (int ignore)
 	    {
 	      sprintf (path, "%.*s/%s", (int) (d - current_filename), current_filename,
 		       f);
-	      try = fopen (path, FOPEN_RT);
+	      file = fopen (path, FOPEN_RT);
 	    }
 	}
 
-      if (try == NULL)
+      if (file == NULL)
 	{
 	  int i;
 
 	  for (i = 0; i < include_dir_count; i++)
 	    {
 	      sprintf (path, "%s/%s", include_dirs[i], f);
-	      if ((try = fopen (path, FOPEN_RT)) != NULL)
+	      if ((file = fopen (path, FOPEN_RT)) != NULL)
 		break;
 	    }
 	}
 
-      if (try == NULL && env != NULL)
+      if (file == NULL && env != NULL)
 	{
 	  sprintf (path, "%s/%s", env, f);
-	  try = fopen (path, FOPEN_RT);
+	  file = fopen (path, FOPEN_RT);
 	}
 
       free (f);
     }
 
-  if (try == NULL)
+  if (file == NULL)
     {
       as_bad (_("unable to locate include file: %s"), filename);
       free (path);
     }
   else
     {
-      fclose (try);
+      fclose (file);
       register_dependency (path);
       input_scrub_insert_file (path);
     }
