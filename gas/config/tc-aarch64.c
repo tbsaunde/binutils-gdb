@@ -7990,7 +7990,7 @@ struct aarch64_option_abi_value_table
 static const struct aarch64_option_abi_value_table aarch64_abis[] = {
   {"ilp32",		AARCH64_ABI_ILP32},
   {"lp64",		AARCH64_ABI_LP64},
-  {NULL,		0}
+  {NULL,	AARCH64_ABI_LP64	}
 };
 
 static int
