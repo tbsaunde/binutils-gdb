@@ -19,7 +19,7 @@
    Boston, MA 02110-1301, USA.  */
 
 #ifndef vax_opcodeT
-#define vax_opcodeT int
+#define vax_opcodeT unsigned int
 #endif /* no vax_opcodeT */
 
 struct vot_wot			/* vax opcode table: wot to do with this */
