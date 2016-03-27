@@ -376,7 +376,7 @@ md_estimate_size_before_relax (fragS *fragP, segT segment)
 	  )
 	{
 	  /* Non-relaxable cases.  */
-	  int reloc_type = NO_RELOC;
+	  bfd_reloc_code_real_type reloc_type = NO_RELOC;
 	  char *p;
 	  int old_fr_fix;
 
