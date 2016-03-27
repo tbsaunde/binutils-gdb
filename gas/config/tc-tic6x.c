@@ -764,7 +764,8 @@ md_begin (void)
       tic6x_opcode_list *opc = XNEW (tic6x_opcode_list);
 
       opc->id = id;
-      opc->next = hash_find (opcode_hash, tic6x_opcode_table[id].name);
+      opc->next = (tic6x_opcode_list_tag *)
+       	hash_find (opcode_hash, tic6x_opcode_table[id].name);
       if ((errmsg = hash_jam (opcode_hash, tic6x_opcode_table[id].name, opc))
 	  != NULL)
 	as_fatal ("%s", _(errmsg));
