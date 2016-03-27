@@ -2069,7 +2069,7 @@ sparc_ip (char *str, const struct sparc_opcode **pinsn)
 		    /* strlen (name), precomputed for speed */
 		    int len;
 		    /* The reloc this pseudo-op translates to.  */
-		    int reloc;
+		    bfd_reloc_code_real_type reloc;
 		    /* 1 if tls call.  */
 		    int tls_call;
 		  }
@@ -2531,7 +2531,7 @@ sparc_ip (char *str, const struct sparc_opcode **pinsn)
 		      /* strlen (name), precomputed for speed */
 		      int len;
 		      /* The reloc this pseudo-op translates to.  */
-		      int reloc;
+		      bfd_reloc_code_real_type reloc;
 		      /* Non-zero if for v9 only.  */
 		      int v9_p;
 		      /* Non-zero if can be used in pc-relative contexts.  */
