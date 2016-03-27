@@ -237,7 +237,7 @@ typedef struct
 
 typedef struct
 {
-  const char *template;
+  const char *template_;
   uint32_t value;
 } asm_nzcv;
 
@@ -5997,7 +5997,7 @@ void
 md_assemble (char *str)
 {
   char *p = str;
-  templates *template;
+  templates *template_;
   aarch64_opcode *opcode;
   aarch64_inst *inst_base;
   unsigned saved_cond;
@@ -6016,8 +6016,8 @@ md_assemble (char *str)
   DEBUG_TRACE ("==============================");
   DEBUG_TRACE ("Enter md_assemble with %s", str);
 
-  template = opcode_lookup (&p);
-  if (!template)
+  template_ = opcode_lookup (&p);
+  if (!template_)
     {
       /* It wasn't an instruction, but it might be a register alias of
          the form alias .req reg directive.  */
@@ -6052,7 +6052,7 @@ md_assemble (char *str)
   /* Iterate through all opcode entries with the same mnemonic name.  */
   do
     {
-      opcode = template->opcode;
+      opcode = template_->opcode;
 
       DEBUG_TRACE ("opcode %s found", opcode->name);
 #ifdef DEBUG_AARCH64
@@ -6110,14 +6110,14 @@ md_assemble (char *str)
 	  return;
 	}
 
-      template = template->next;
-      if (template != NULL)
+      template_ = template_->next;
+      if (template_ != NULL)
 	{
 	  reset_aarch64_instruction (&inst);
 	  inst.cond = saved_cond;
 	}
     }
-  while (template != NULL);
+  while (template_ != NULL);
 
   /* Issue the error messages if any.  */
   output_operand_error_report (str);
@@ -7606,7 +7606,7 @@ md_begin (void)
 			 (void *) (reg_names + i));
 
   for (i = 0; i < ARRAY_SIZE (nzcv_names); i++)
-    checked_hash_insert (aarch64_nzcv_hsh, nzcv_names[i].template,
+    checked_hash_insert (aarch64_nzcv_hsh, nzcv_names[i].template_,
 			 (void *) (nzcv_names + i));
 
   for (i = 0; aarch64_operand_modifiers[i].name != NULL; i++)
