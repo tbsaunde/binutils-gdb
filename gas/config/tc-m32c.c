@@ -463,7 +463,7 @@ const relax_typeS md_relax_table[] =
  /* 26 */ {     0,      0, 6,  0 }  /* adjnz disp24 pc8 */
 };
 
-enum {
+static enum {
   M32C_MACRO_JCND16_5_W,
   M32C_MACRO_JCND16_5_A,
   M32C_MACRO_JCND16_W,

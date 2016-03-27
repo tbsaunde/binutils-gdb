@@ -677,7 +677,7 @@ static bfd_boolean warn_interrupt_nops = TRUE;
 #define OPTION_MOVE_DATA 'd'
 static bfd_boolean move_data = FALSE;
 
-enum
+static enum
 {
   OPTION_SILICON_ERRATA = OPTION_MD_BASE,
   OPTION_SILICON_ERRATA_WARN,
