@@ -2879,7 +2879,8 @@ parse_shift (char **str, aarch64_opnd_info *operand, enum parse_shift_mode mode)
       return FALSE;
     }
 
-  shift_op = hash_find_n (aarch64_shift_hsh, *str, p - *str);
+  shift_op = (struct aarch64_name_value_pair *)
+    hash_find_n (aarch64_shift_hsh, *str, p - *str);
 
   if (shift_op == NULL)
     {
@@ -3572,7 +3573,8 @@ parse_pldop (char **str)
   while (ISALNUM (*q))
     q++;
 
-  o = hash_find_n (aarch64_pldop_hsh, p, q - p);
+  o = (struct aarch64_name_value_pair *)
+    hash_find_n (aarch64_pldop_hsh, p, q - p);
   if (!o)
     return PARSE_FAIL;
 
@@ -3593,7 +3595,7 @@ parse_barrier (char **str)
   while (ISALPHA (*q))
     q++;
 
-  o = hash_find_n (aarch64_barrier_opt_hsh, p, q - p);
+  o = (asm_barrier_opt *) hash_find_n (aarch64_barrier_opt_hsh, p, q - p);
   if (!o)
     return PARSE_FAIL;
 
@@ -3615,7 +3617,8 @@ parse_barrier_psb (char **str,
   while (ISALPHA (*q))
     q++;
 
-  o = hash_find_n (aarch64_hint_opt_hsh, p, q - p);
+  o = (struct aarch64_name_value_pair *)
+    hash_find_n (aarch64_hint_opt_hsh, p, q - p);
   if (!o)
     {
       set_fatal_syntax_error
@@ -3663,7 +3666,7 @@ parse_sys_reg (char **str, struct hash_control *sys_regs,
   /* Assert that BUF be large enough.  */
   gas_assert (p - buf == q - *str);
 
-  o = hash_find (sys_regs, buf);
+  o = (aarch64_sys_reg *) hash_find (sys_regs, buf);
   if (!o)
     {
       if (!imple_defined_p)
@@ -3715,7 +3718,7 @@ parse_sys_ins_reg (char **str, struct hash_control *sys_ins_regs)
       *p++ = TOLOWER (*q);
   *p = '\0';
 
-  o = hash_find (sys_ins_regs, buf);
+  o = (aarch64_sys_ins_reg *) hash_find (sys_ins_regs, buf);
   if (!o)
     return NULL;
 
@@ -5403,7 +5406,8 @@ parse_operands (char *str, const aarch64_opcode *opcode)
 
 	case AARCH64_OPND_NZCV:
 	  {
-	    const asm_nzcv *nzcv = hash_find_n (aarch64_nzcv_hsh, str, 4);
+	    const asm_nzcv *nzcv = (asm_nzcv *)
+	      hash_find_n (aarch64_nzcv_hsh, str, 4);
 	    if (nzcv != NULL)
 	      {
 		str += 4;
