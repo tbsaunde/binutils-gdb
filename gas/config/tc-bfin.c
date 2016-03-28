@@ -598,7 +598,7 @@ parse (char *line)
   set_start_state ();
 
   /* Call yyparse here.  */
-  state = yyparse ();
+  state = (parse_state) yyparse ();
   if (state == SEMANTIC_ERROR)
     {
       as_bad (_("Parse failed."));
