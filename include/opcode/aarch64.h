@@ -79,7 +79,9 @@ typedef uint32_t aarch64_insn;
 						 | AARCH64_FEATURE_RDMA)
 
 #define AARCH64_ARCH_NONE	AARCH64_FEATURE (0, 0)
-#define AARCH64_ANY		AARCH64_FEATURE (-1, 0)	/* Any basic core.  */
+
+/* Any basic core.  */
+#define AARCH64_ANY		AARCH64_FEATURE ((unsigned int) -1, 0)
 
 /* CPU-specific features.  */
 typedef unsigned long aarch64_feature_set;
