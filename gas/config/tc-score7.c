@@ -2286,7 +2286,8 @@ s7_do16_rdhrs (char *str)
    in the expr_section, and creating a fix for that.  */
 
 static fixS *
-s7_fix_new_score (fragS * frag, int where, short int size, expressionS * exp, int pc_rel, int reloc)
+s7_fix_new_score (fragS * frag, int where, short int size, expressionS * exp,
+		  int pc_rel, bfd_reloc_code_real_type reloc)
 {
   fixS *new_fix;
 

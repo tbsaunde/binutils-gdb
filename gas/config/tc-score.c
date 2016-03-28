@@ -2167,7 +2167,8 @@ s3_do_ltb (char *str)
    a data instruction.  We do this by pushing the expression into a symbol
    in the expr_section, and creating a fix for that.  */
 static fixS *
-s3_fix_new_score (fragS * frag, int where, short int size, expressionS * exp, int pc_rel, int reloc)
+s3_fix_new_score (fragS * frag, int where, short int size, expressionS * exp,
+		  int pc_rel, bfd_reloc_code_real_type reloc)
 {
   fixS *new_fix;
 
