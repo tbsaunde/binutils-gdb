@@ -2648,13 +2648,13 @@ s3_parse_16_32_inst (char *insnstr, bfd_boolean gen_frag_p)
 {
   char c;
   char *p;
-  char *operator = insnstr;
+  char *op = insnstr;
   const struct s3_asm_opcode *opcode;
 
   /* Parse operator and operands.  */
-  s3_skip_whitespace (operator);
+  s3_skip_whitespace (op);
 
-  for (p = operator; *p != '\0'; p++)
+  for (p = op; *p != '\0'; p++)
     if ((*p == ' ') || (*p == '!'))
       break;
 
@@ -2664,7 +2664,7 @@ s3_parse_16_32_inst (char *insnstr, bfd_boolean gen_frag_p)
   c = *p;
   *p = '\0';
 
-  opcode = (const struct s3_asm_opcode *) hash_find (s3_score_ops_hsh, operator);
+  opcode = (const struct s3_asm_opcode *) hash_find (s3_score_ops_hsh, op);
   *p = c;
 
   memset (&s3_inst, '\0', sizeof (s3_inst));
@@ -2697,20 +2697,20 @@ s3_parse_48_inst (char *insnstr, bfd_boolean gen_frag_p)
 {
   char c;
   char *p;
-  char *operator = insnstr;
+  char *op = insnstr;
   const struct s3_asm_opcode *opcode;
 
   /* Parse operator and operands.  */
-  s3_skip_whitespace (operator);
+  s3_skip_whitespace (op);
 
-  for (p = operator; *p != '\0'; p++)
+  for (p = op; *p != '\0'; p++)
     if (*p == ' ')
       break;
 
   c = *p;
   *p = '\0';
 
-  opcode = (const struct s3_asm_opcode *) hash_find (s3_score_ops_hsh, operator);
+  opcode = (const struct s3_asm_opcode *) hash_find (s3_score_ops_hsh, op);
   *p = c;
 
   memset (&s3_inst, '\0', sizeof (s3_inst));

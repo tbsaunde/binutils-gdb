@@ -2776,13 +2776,13 @@ s7_parse_16_32_inst (char *insnstr, bfd_boolean gen_frag_p)
 {
   char c;
   char *p;
-  char *operator = insnstr;
+  char *op = insnstr;
   const struct s7_asm_opcode *opcode;
 
   /* Parse operator and operands.  */
-  s7_skip_whitespace (operator);
+  s7_skip_whitespace (op);
 
-  for (p = operator; *p != '\0'; p++)
+  for (p = op; *p != '\0'; p++)
     if ((*p == ' ') || (*p == '!'))
       break;
 
@@ -2792,7 +2792,7 @@ s7_parse_16_32_inst (char *insnstr, bfd_boolean gen_frag_p)
   c = *p;
   *p = '\0';
 
-  opcode = (const struct s7_asm_opcode *) hash_find (s7_score_ops_hsh, operator);
+  opcode = (const struct s7_asm_opcode *) hash_find (s7_score_ops_hsh, op);
   *p = c;
 
   memset (&s7_inst, '\0', sizeof (s7_inst));
