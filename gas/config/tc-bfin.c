@@ -325,7 +325,7 @@ struct bfin_cpu bfin_cpus[] =
   {"bf592", BFIN_CPU_BF592, 0x0001, AC_05000074},
   {"bf592", BFIN_CPU_BF592, 0x0000, AC_05000074},
 
-  {NULL, 0, 0, 0}
+  {NULL, BFIN_CPU_UNKNOWN, 0, 0}
 };
 
 /* Define bfin-specific command-line options (there are none). */
