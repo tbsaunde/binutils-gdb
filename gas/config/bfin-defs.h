@@ -261,12 +261,6 @@ typedef struct expr_node_struct Expr_Node;
 extern INSTR_T gencode (unsigned long x);
 extern INSTR_T conscode (INSTR_T head, INSTR_T tail);
 extern INSTR_T conctcode (INSTR_T head, INSTR_T tail);
-extern INSTR_T note_reloc
-       (INSTR_T code, Expr_Node *, int reloc,int pcrel);
-extern INSTR_T note_reloc1
-       (INSTR_T code, const char * sym, int reloc, int pcrel);
-extern INSTR_T note_reloc2
-       (INSTR_T code, const char *symbol, int reloc, int value, int pcrel);
 
 /* Types of expressions.  */
 typedef enum
@@ -320,9 +314,6 @@ Expr_Node *Expr_Node_Create (Expr_Node_Type type,
 		         Expr_Node_Value value,
 			 Expr_Node *Left_Child,
 			 Expr_Node *Right_Child);
-
-/* Generate the reloc structure as a series of instructions.  */
-INSTR_T Expr_Node_Gen_Reloc (Expr_Node *head, int parent_reloc);
 
 #define MKREF(x)	mkexpr (0,x)
 
