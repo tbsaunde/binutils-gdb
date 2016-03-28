@@ -155,125 +155,125 @@ struct m68k_incant
 #define getone(x)	((((x)->m_opcode)>>16)&0xffff)
 #define gettwo(x)	(((x)->m_opcode)&0xffff)
 
-static const enum m68k_register m68000_ctrl[] = { 0 };
+static const enum m68k_register m68000_ctrl[] = { INVALID_REG };
 static const enum m68k_register m68010_ctrl[] = {
   SFC, DFC, USP, VBR,
-  0
+  INVALID_REG
 };
 static const enum m68k_register m68020_ctrl[] = {
   SFC, DFC, USP, VBR, CACR, CAAR, MSP, ISP,
-  0
+  INVALID_REG
 };
 static const enum m68k_register m68040_ctrl[] = {
   SFC, DFC, CACR, TC, ITT0, ITT1, DTT0, DTT1,
   USP, VBR, MSP, ISP, MMUSR, URP, SRP,
-  0
+  INVALID_REG
 };
 static const enum m68k_register m68060_ctrl[] = {
   SFC, DFC, CACR, TC, ITT0, ITT1, DTT0, DTT1, BUSCR,
   USP, VBR, URP, SRP, PCR,
-  0
+  INVALID_REG
 };
 static const enum m68k_register mcf_ctrl[] = {
   CACR, TC, ACR0, ACR1, ACR2, ACR3, VBR, ROMBAR,
   RAMBAR0, RAMBAR1, RAMBAR, MBAR,
-  0
+  INVALID_REG
 };
 static const enum m68k_register mcf51_ctrl[] = {
   VBR, CPUCR,
-  0
+  INVALID_REG
 };
 static const enum m68k_register mcf5206_ctrl[] = {
   CACR, ACR0, ACR1, VBR, RAMBAR0, RAMBAR_ALT, MBAR,
-  0
+  INVALID_REG
 };
 static const enum m68k_register mcf5208_ctrl[] = {
   CACR, ACR0, ACR1, VBR,  RAMBAR, RAMBAR1,
-  0
+  INVALID_REG
 };
 static const enum m68k_register mcf5210a_ctrl[] = {
   VBR, CACR, ACR0, ACR1, ROMBAR, RAMBAR, RAMBAR1, MBAR,
-  0
+  INVALID_REG
 };
 static const enum m68k_register mcf5213_ctrl[] = {
   VBR, RAMBAR, RAMBAR1, FLASHBAR,
-  0
+  INVALID_REG
 };
 static const enum m68k_register mcf5216_ctrl[] = {
   VBR, CACR, ACR0, ACR1, FLASHBAR, RAMBAR, RAMBAR1,
-  0
+  INVALID_REG
 };
 static const enum m68k_register mcf5221x_ctrl[] = {
   VBR, FLASHBAR, RAMBAR, RAMBAR1,
-  0
+  INVALID_REG
 };
 static const enum m68k_register mcf52223_ctrl[] = {
   VBR, FLASHBAR, RAMBAR, RAMBAR1,
-  0
+  INVALID_REG
 };
 static const enum m68k_register mcf52235_ctrl[] = {
   VBR, FLASHBAR, RAMBAR, RAMBAR1,
-  0
+  INVALID_REG
 };
 static const enum m68k_register mcf5225_ctrl[] = {
   VBR, CACR, ACR0, ACR1, FLASHBAR, RAMBAR, MBAR, RAMBAR1,
-  0
+  INVALID_REG
 };
 static const enum m68k_register mcf52259_ctrl[] = {
   VBR, FLASHBAR, RAMBAR, RAMBAR1,
-  0
+  INVALID_REG
 };
 static const enum m68k_register mcf52277_ctrl[] = {
   VBR, CACR, ACR0, ACR1, RAMBAR, RAMBAR1,
-  0
+  INVALID_REG
 };
 static const enum m68k_register mcf5235_ctrl[] = {
   VBR, CACR, ACR0, ACR1, RAMBAR, RAMBAR1,
-  0
+  INVALID_REG
 };
 static const enum m68k_register mcf5249_ctrl[] = {
   VBR, CACR, ACR0, ACR1, RAMBAR0, RAMBAR1, RAMBAR, MBAR, MBAR2,
-  0
+  INVALID_REG
 };
 static const enum m68k_register mcf5250_ctrl[] = {
   VBR,
-  0
+  INVALID_REG
 };
 static const enum m68k_register mcf5253_ctrl[] = {
   VBR, CACR, ACR0, ACR1, RAMBAR0, RAMBAR1, RAMBAR, MBAR, MBAR2,
-  0
+  INVALID_REG
 };
 static const enum m68k_register mcf5271_ctrl[] = {
   VBR, CACR, ACR0, ACR1, RAMBAR, RAMBAR1,
-  0
+  INVALID_REG
 };
 static const enum m68k_register mcf5272_ctrl[] = {
   VBR, CACR, ACR0, ACR1, ROMBAR, RAMBAR_ALT, RAMBAR0, MBAR,
-  0
+  INVALID_REG
 };
 static const enum m68k_register mcf5275_ctrl[] = {
   VBR, CACR, ACR0, ACR1, RAMBAR, RAMBAR1,
-  0
+  INVALID_REG
 };
 static const enum m68k_register mcf5282_ctrl[] = {
   VBR, CACR, ACR0, ACR1, FLASHBAR, RAMBAR, RAMBAR1,
-  0
+  INVALID_REG
 };
 static const enum m68k_register mcf53017_ctrl[] = {
   VBR, CACR, ACR0, ACR1, RAMBAR, RAMBAR1,
-  0
+  INVALID_REG
 };
 static const enum m68k_register mcf5307_ctrl[] = {
   VBR, CACR, ACR0, ACR1, RAMBAR0, RAMBAR_ALT, MBAR,
-  0
+  INVALID_REG
 };
 static const enum m68k_register mcf5329_ctrl[] = {
   VBR, CACR, ACR0, ACR1, RAMBAR, RAMBAR1,
-  0
+  INVALID_REG
 };
 static const enum m68k_register mcf5373_ctrl[] = {
   VBR, CACR, ACR0, ACR1, RAMBAR, RAMBAR1,
-  0
+  INVALID_REG
 };
 static const enum m68k_register mcfv4e_ctrl[] = {
   CACR, ASID, ACR0, ACR1, ACR2, ACR3, MMUBAR,
@@ -289,7 +289,7 @@ static const enum m68k_register mcfv4e_ctrl[] = {
   ITT0 /* ACR0 */, ITT1 /* ACR1 */, DTT0 /* ACR2 */, DTT1 /* ACR3 */,
   MBAR1 /* MBAR */, MBAR2 /* SECMBAR */, MBAR0 /* SECMBAR */,
   ROMBAR /* ROMBAR0 */, RAMBAR /* RAMBAR1 */,
-  0
+  INVALID_REG
 };
 static const enum m68k_register mcf5407_ctrl[] = {
   CACR, ASID, ACR0, ACR1, ACR2, ACR3,
@@ -298,7 +298,7 @@ static const enum m68k_register mcf5407_ctrl[] = {
   TC /* ASID */,
   ITT0 /* ACR0 */, ITT1 /* ACR1 */, DTT0 /* ACR2 */, DTT1 /* ACR3 */,
   MBAR1 /* MBAR */, RAMBAR /* RAMBAR1 */,
-  0
+  INVALID_REG
 };
 static const enum m68k_register mcf54418_ctrl[] = {
   CACR, ASID, ACR0, ACR1, ACR2, ACR3, ACR4, ACR5, ACR6, ACR7, MMUBAR, RGPIOBAR,
@@ -307,7 +307,7 @@ static const enum m68k_register mcf54418_ctrl[] = {
   TC /* ASID */, BUSCR /* MMUBAR */,
   ITT0 /* ACR0 */, ITT1 /* ACR1 */, DTT0 /* ACR2 */, DTT1 /* ACR3 */,
   RAMBAR /* RAMBAR1 */,
-  0
+  INVALID_REG
 };
 static const enum m68k_register mcf54455_ctrl[] = {
   CACR, ASID, ACR0, ACR1, ACR2, ACR3, MMUBAR,
@@ -316,7 +316,7 @@ static const enum m68k_register mcf54455_ctrl[] = {
   TC /* ASID */, BUSCR /* MMUBAR */,
   ITT0 /* ACR0 */, ITT1 /* ACR1 */, DTT0 /* ACR2 */, DTT1 /* ACR3 */,
   RAMBAR /* RAMBAR1 */,
-  0
+  INVALID_REG
 };
 static const enum m68k_register mcf5475_ctrl[] = {
   CACR, ASID, ACR0, ACR1, ACR2, ACR3, MMUBAR,
@@ -325,7 +325,7 @@ static const enum m68k_register mcf5475_ctrl[] = {
   TC /* ASID */, BUSCR /* MMUBAR */,
   ITT0 /* ACR0 */, ITT1 /* ACR1 */, DTT0 /* ACR2 */, DTT1 /* ACR3 */,
   MBAR1 /* MBAR */, RAMBAR /* RAMBAR1 */,
-  0
+  INVALID_REG
 };
 static const enum m68k_register mcf5485_ctrl[] = {
   CACR, ASID, ACR0, ACR1, ACR2, ACR3, MMUBAR,
@@ -334,11 +334,11 @@ static const enum m68k_register mcf5485_ctrl[] = {
   TC /* ASID */, BUSCR /* MMUBAR */,
   ITT0 /* ACR0 */, ITT1 /* ACR1 */, DTT0 /* ACR2 */, DTT1 /* ACR3 */,
   MBAR1 /* MBAR */, RAMBAR /* RAMBAR1 */,
-  0
+  INVALID_REG
 };
 static const enum m68k_register fido_ctrl[] = {
   SFC, DFC, USP, VBR, CAC, MBO,
-  0
+  INVALID_REG
 };
 #define cpu32_ctrl m68010_ctrl
 
@@ -4011,7 +4011,7 @@ crack_operand (char *str, struct m68k_op *opP)
     {
       opP->mode = REGLST;
       opP->mask = ~(int)opP->reg;
-      opP->reg = 0;
+      opP->reg = INVALID_REG;
     }
 
   return str;

@@ -43,6 +43,7 @@
 
 enum m68k_register
 {
+  INVALID_REG = 0,
   DATA0 = 1,			/*   1- 8 == data registers 0-7 */
   DATA1,
   DATA2,

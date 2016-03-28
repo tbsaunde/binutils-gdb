@@ -741,7 +741,7 @@ m68k_reg_parse (char **ccp)
 	}
     }
 
-  return 0;
+  return INVALID_REG;
 }
 
 /* The lexer.  */
