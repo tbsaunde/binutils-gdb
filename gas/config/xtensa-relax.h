@@ -91,9 +91,6 @@ struct req_or_option_list
 
 /* Operand types and constraints on operands:  */
 
-typedef enum op_type OpType;
-typedef enum cmp_op CmpOp;
-
 enum op_type
 {
   OP_CONSTANT,
@@ -108,12 +105,14 @@ enum op_type
   OP_FREEREG,
   OP_LABEL
 };
+typedef enum op_type OpType;
 
 enum cmp_op
 {
   OP_EQUAL,
   OP_NOTEQUAL,
 };
+typedef enum cmp_op CmpOp;
 
 struct precondition
 {
@@ -143,7 +142,6 @@ struct build_op
 };
 
 typedef struct build_instr BuildInstr;
-typedef enum instr_type InstrType;
 
 enum instr_type
 {
@@ -151,6 +149,7 @@ enum instr_type
   INSTR_LITERAL_DEF,
   INSTR_LABEL_DEF
 };
+typedef enum instr_type InstrType;
 
 struct build_instr
 {
