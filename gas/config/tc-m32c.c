@@ -992,18 +992,18 @@ md_cgen_lookup_reloc (const CGEN_INSN *    insn ATTRIBUTE_UNUSED,
 
   for (i = ARRAY_SIZE (op_reloc_table); --i >= 0; )
     {
-      const struct op_reloc *or = &op_reloc_table[i];
+      const struct op_reloc *opreloc = &op_reloc_table[i];
 
-      if (or->operand == operand->type)
+      if (opreloc->operand == operand->type)
         {
-          fixP->fx_where += or->offset;
-          fixP->fx_size -= or->offset;
+          fixP->fx_where += opreloc->offset;
+          fixP->fx_size -= opreloc->offset;
 
 	  if (fixP->fx_cgen.opinfo
 	      && fixP->fx_cgen.opinfo != BFD_RELOC_NONE)
 	    return fixP->fx_cgen.opinfo;
 
-          return or->reloc;
+          return opreloc->reloc;
         }
     }
 
