@@ -364,7 +364,7 @@ struct suffix_reloc_map
   const char *suffix;
   int length;
   bfd_reloc_code_real_type reloc;
-  unsigned char operator;
+  unsigned char op;
 };
 
 #define SUFFIX_MAP(str, reloc, op) { str, sizeof (str) - 1, reloc, op }
@@ -1777,31 +1777,31 @@ static unsigned char
 map_suffix_reloc_to_operator (bfd_reloc_code_real_type reloc)
 {
   struct suffix_reloc_map *sfx;
-  unsigned char operator = (unsigned char) -1;
+  unsigned char op = (unsigned char) -1;
 
   for (sfx = &suffix_relocs[0]; sfx->suffix; sfx++)
     {
       if (sfx->reloc == reloc)
 	{
-	  operator = sfx->operator;
+	  op = sfx->op;
 	  break;
 	}
     }
-  gas_assert (operator != (unsigned char) -1);
-  return operator;
+  gas_assert (op != (unsigned char) -1);
+  return op;
 }
 
 
 /* Find the matching reloc type.  */
 static bfd_reloc_code_real_type
-map_operator_to_reloc (unsigned char operator, bfd_boolean is_literal)
+map_operator_to_reloc (unsigned char op, bfd_boolean is_literal)
 {
   struct suffix_reloc_map *sfx;
   bfd_reloc_code_real_type reloc = BFD_RELOC_UNUSED;
 
   for (sfx = &suffix_relocs[0]; sfx->suffix; sfx++)
     {
-      if (sfx->operator == operator)
+      if (sfx->op == op)
 	{
 	  reloc = sfx->reloc;
 	  break;
