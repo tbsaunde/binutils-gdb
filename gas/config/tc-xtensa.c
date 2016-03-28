@@ -9026,8 +9026,8 @@ struct fixup_cache
 
 static int fixup_order (const void *a, const void *b)
 {
-  const cached_fixupS *pa = a;
-  const cached_fixupS *pb = b;
+  const cached_fixupS *pa = (cached_fixupS *) a;
+  const cached_fixupS *pb = (cached_fixupS *) b;
 
   if (pa->addr == pb->addr)
     {
@@ -11488,7 +11488,7 @@ xtensa_restore_emit_state (emit_state *state)
 static bfd_boolean
 match_section_group (bfd *abfd ATTRIBUTE_UNUSED, asection *sec, void *inf)
 {
-  const char *gname = inf;
+  const char *gname = (char *) inf;
   const char *group_name = elf_group_name (sec);
 
   return (group_name == gname
