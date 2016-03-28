@@ -141,11 +141,11 @@ const char line_separator_chars[] = ";";
 
 /* Characters that can be used to separate the mantissa from the
    exponent in floating point numbers. */
-const char EXP_CHARS[] = "eE";
+extern const char EXP_CHARS[] = "eE";
 
 /* Characters that mean this number is a floating point constant.
    As in 0f12.456 or  0d1.2345e12.  */
-const char FLT_CHARS[] = "fFdDxX";
+extern const char FLT_CHARS[] = "fFdDxX";
 
 typedef enum bfin_cpu_type
 {
