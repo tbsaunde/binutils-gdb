@@ -375,7 +375,7 @@ md_assemble (char * str)
       && (rl_type == RL_TYPE_JUMP || results.num_fixups)
       && !relaxable (insn))
     {
-      int reloc = 0;
+      bfd_reloc_code_real_type reloc = (bfd_reloc_code_real_type) 0;
       int addend = results.num_fixups + 16 * insn_size/8;
 
       switch (rl_for (insn))
