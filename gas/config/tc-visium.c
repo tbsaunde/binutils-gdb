@@ -740,7 +740,7 @@ char *
 parse_exp (char *s, expressionS * op)
 {
   char *save = input_line_pointer;
-  char *new;
+  char *end;
 
   if (!s)
     {
@@ -749,9 +749,9 @@ parse_exp (char *s, expressionS * op)
 
   input_line_pointer = s;
   expression (op);
-  new = input_line_pointer;
+  end = input_line_pointer;
   input_line_pointer = save;
-  return new;
+  return end;
 }
 
 /* If the given string is a Visium opcode mnemonic return the code
