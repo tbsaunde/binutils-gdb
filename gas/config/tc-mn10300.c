@@ -2094,7 +2094,8 @@ keep_going:
 	    }
 	  else
 	    {
-	      int reloc, pcrel, offset;
+	      int pcrel, offset;
+	      bfd_reloc_code_real_type reloc;
 	      fixS *fixP;
 
 	      reloc = BFD_RELOC_NONE;
