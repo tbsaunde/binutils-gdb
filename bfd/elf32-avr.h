@@ -47,6 +47,14 @@ elf32_avr_build_stubs (struct bfd_link_info *);
    before the property records are written out.  */
 #define AVR_PROPERTY_SECTION_HEADER_SIZE 4
 
+enum record_type
+{
+  RECORD_ORG = 0,
+  RECORD_ORG_AND_FILL = 1,
+  RECORD_ALIGN = 2,
+  RECORD_ALIGN_AND_FILL = 3
+};
+
 /* This holds a single property record in memory, the structure of this
    data when written out to the ELF section is more compressed.  */
 
@@ -57,12 +65,7 @@ struct avr_property_record
   bfd_vma offset;
 
   /* The type of this record.  */
-  enum {
-    RECORD_ORG = 0,
-    RECORD_ORG_AND_FILL = 1,
-    RECORD_ALIGN = 2,
-    RECORD_ALIGN_AND_FILL = 3
-  } type;
+  enum record_type type;
 
   /* Type specific data.  */
   union
