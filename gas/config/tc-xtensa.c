@@ -4260,7 +4260,7 @@ xg_assemble_literal_space (/* const */ int size, int slot)
   lit_saved_frag = frag_now;
   frag_now->tc_frag_data.literal_frag = get_literal_pool_location (now_seg);
   frag_now->fr_symbol = xtensa_create_literal_symbol (now_seg, frag_now);
-  xg_finish_frag (0, RELAX_LITERAL, 0, size, FALSE);
+  xg_finish_frag (0, RELAX_LITERAL, RELAX_XTENSA_NONE, size, FALSE);
 
   /* Go back.  */
   xtensa_restore_emit_state (&state);
