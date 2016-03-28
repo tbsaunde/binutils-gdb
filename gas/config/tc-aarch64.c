@@ -1782,7 +1782,8 @@ s_ltorg (int ignored ATTRIBUTE_UNUSED)
 #ifdef OBJ_ELF
 /* Forward declarations for functions below, in the MD interface
    section.  */
-static fixS *fix_new_aarch64 (fragS *, int, short, expressionS *, int, int);
+static fixS *fix_new_aarch64 (fragS *, int, short, expressionS *, int,
+			      bfd_reloc_code_real_type);
 static struct reloc_table_entry * find_reloc_table_entry (char **);
 
 /* Directives: Data.  */
@@ -3876,7 +3877,8 @@ reencode_movzn_to_movn (uint32_t opcode)
 static fixS *
 fix_new_aarch64 (fragS * frag,
 		 int where,
-		 short int size, expressionS * exp, int pc_rel, int reloc)
+		 short int size, expressionS * exp, int pc_rel,
+		 bfd_reloc_code_real_type reloc)
 {
   fixS *new_fix;
 
