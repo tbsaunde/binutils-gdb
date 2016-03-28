@@ -275,7 +275,7 @@ static struct visium_arch_option_table visium_archs[] =
   {"mcm",   VISIUM_ARCH_MCM},
   {"gr5",   VISIUM_ARCH_MCM},
   {"gr6",   VISIUM_ARCH_GR6},
-  {NULL, 0}
+  {NULL, VISIUM_ARCH_DEF}
 };
 
 struct visium_long_option_table
