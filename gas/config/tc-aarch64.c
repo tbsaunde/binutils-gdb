@@ -4894,14 +4894,14 @@ process_movw_reloc_info (void)
 static inline unsigned int
 get_logsz (unsigned int size)
 {
-  const unsigned char ls[16] =
+  const char ls[16] =
     {0, 1, -1, 2, -1, -1, -1, 3, -1, -1, -1, -1, -1, -1, -1, 4};
   if (size > 16)
     {
       gas_assert (0);
       return -1;
     }
-  gas_assert (ls[size - 1] != (unsigned char)-1);
+  gas_assert (ls[size - 1] != (char)-1);
   return ls[size - 1];
 }
 
