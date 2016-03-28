@@ -898,8 +898,12 @@ conctcode (INSTR_T head, INSTR_T tail)
   return head;
 }
 
-INSTR_T
-note_reloc (INSTR_T code, Expr_Node * symbol, int reloc, int pcrel)
+static INSTR_T note_reloc1 (INSTR_T code, const char *symbol,
+			    bfd_reloc_code_real_type reloc, int pcrel);
+
+static INSTR_T
+note_reloc (INSTR_T code, Expr_Node * symbol, bfd_reloc_code_real_type reloc,
+	    int pcrel)
 {
   /* Assert that the symbol is not an operator.  */
   gas_assert (symbol->type == Expr_Node_Reloc);
@@ -908,8 +912,9 @@ note_reloc (INSTR_T code, Expr_Node * symbol, int reloc, int pcrel)
 
 }
 
-INSTR_T
-note_reloc1 (INSTR_T code, const char *symbol, int reloc, int pcrel)
+static INSTR_T
+note_reloc1 (INSTR_T code, const char *symbol, bfd_reloc_code_real_type reloc,
+	     int pcrel)
 {
   code->reloc = reloc;
   code->exp = mkexpr (0, symbol_find_or_make (symbol));
@@ -917,8 +922,9 @@ note_reloc1 (INSTR_T code, const char *symbol, int reloc, int pcrel)
   return code;
 }
 
-INSTR_T
-note_reloc2 (INSTR_T code, const char *symbol, int reloc, int value, int pcrel)
+static INSTR_T
+note_reloc2 (INSTR_T code, const char *symbol, bfd_reloc_code_real_type reloc,
+	     int value, int pcrel)
 {
   code->reloc = reloc;
   code->exp = mkexpr (value, symbol_find_or_make (symbol));
@@ -964,10 +970,11 @@ Expr_Node_Create (Expr_Node_Type type,
 static const char *con = ".__constant";
 static const char *op = ".__operator";
 static INSTR_T Expr_Node_Gen_Reloc_R (Expr_Node * head);
-INSTR_T Expr_Node_Gen_Reloc (Expr_Node *head, int parent_reloc);
+static INSTR_T Expr_Node_Gen_Reloc (Expr_Node *head,
+				    bfd_reloc_code_real_type parent_reloc);
 
 INSTR_T
-Expr_Node_Gen_Reloc (Expr_Node * head, int parent_reloc)
+Expr_Node_Gen_Reloc (Expr_Node * head, bfd_reloc_code_real_type parent_reloc)
 {
   /* Top level reloction expression generator VDSP style.
    If the relocation is just by itself, generate one item
@@ -1316,7 +1323,7 @@ bfin_gen_calla (Expr_Node * addr, int S)
 {
   int val;
   int high_val;
-  int rel = 0;
+  bfd_reloc_code_real_type rel = (bfd_reloc_code_real_type) 0;
   INIT (CALLa);
 
   switch(S){
@@ -1415,7 +1422,7 @@ bfin_gen_ldstidxi (REG_T ptr, REG_T reg, int W, int sz, int Z, Expr_Node * poffs
 
       return conscode (gencode (HI (c_code.opcode)),
 		       Expr_Node_Gen_Reloc(poffset->Left_Child,
-					   poffset->value.i_value));
+					   (bfd_reloc_code_real_type) poffset->value.i_value));
     }
   else
     {
