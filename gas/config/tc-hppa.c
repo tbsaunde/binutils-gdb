@@ -2326,7 +2326,7 @@ pa_parse_ftest_gfx_completer (char **s)
 static fp_operand_format
 pa_parse_fp_cnv_format (char **s)
 {
-  int format;
+  fp_operand_format format;
 
   format = SGL;
   if (**s == ',')
@@ -2393,7 +2393,7 @@ pa_parse_fp_cnv_format (char **s)
 static fp_operand_format
 pa_parse_fp_format (char **s)
 {
-  int format;
+  fp_operand_format format;
 
   format = SGL;
   if (**s == ',')
