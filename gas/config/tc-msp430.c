@@ -4371,7 +4371,7 @@ md_convert_frag (bfd * abfd ATTRIBUTE_UNUSED,
 		 fragS * fragP)
 {
   char * where = 0;
-  int rela = -1;
+  bfd_reloc_code_real_type rela = (bfd_reloc_code_real_type) -1;
   int i;
   struct rcodes_s * cc = NULL;
   struct hcodes_s * hc = NULL;
