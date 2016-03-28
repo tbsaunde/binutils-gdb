@@ -250,7 +250,7 @@ struct bfin_insn
   struct bfin_insn *next;
   struct expression_cell *exp;
   int pcrel;
-  int reloc;
+  bfd_reloc_code_real_type reloc;
 };
 
 #define INSTR_T struct bfin_insn*
