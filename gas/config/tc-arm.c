@@ -230,7 +230,8 @@ static const arm_feature_set arm_ext_fp16 =
   ARM_FEATURE_CORE_HIGH (ARM_EXT2_FP16_INST);
 
 static const arm_feature_set arm_arch_any = ARM_ANY;
-static const arm_feature_set arm_arch_full ATTRIBUTE_UNUSED = ARM_FEATURE (-1, -1, -1);
+static const arm_feature_set arm_arch_full ATTRIBUTE_UNUSED =
+    ARM_FEATURE (UINT_MAX, UINT_MAX, UINT_MAX);
 static const arm_feature_set arm_arch_t2 = ARM_ARCH_THUMB2;
 static const arm_feature_set arm_arch_none = ARM_ARCH_NONE;
 static const arm_feature_set arm_arch_v6m_only = ARM_ARCH_V6M_ONLY;
@@ -13832,7 +13833,7 @@ neon_check_type (unsigned els, enum neon_shape ns, ...)
   unsigned types[NEON_MAX_TYPE_ELS];
   enum neon_el_type k_type = NT_invtype;
   unsigned k_size = -1u;
-  struct neon_type_el badtype = {NT_invtype, -1};
+  struct neon_type_el badtype = {NT_invtype, -1u};
   unsigned key_allowed = 0;
 
   /* Optional registers in Neon instructions are always (not) in operand 1.
