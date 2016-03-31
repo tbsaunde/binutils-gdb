@@ -18982,7 +18982,7 @@ static struct asm_barrier_opt barrier_opt_names[] =
 
 #define xCM_(m1, m2, m3, op, nops, ops, ae)	\
   { m1 #m2 m3, OPS##nops ops, \
-    sizeof (#m2) == 1 ? OT_odd_infix_unc : OT_odd_infix_0 + sizeof (m1) - 1, \
+    sizeof (#m2) == 1 ? OT_odd_infix_unc : (enum opcode_tag) (OT_odd_infix_0 + sizeof (m1) - 1), \
     0x##op, 0x0, ARM_VARIANT, 0, do_##ae, NULL }
 
 #define CM(m1, m2, op, nops, ops, ae)	\
