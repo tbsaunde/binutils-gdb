@@ -845,7 +845,7 @@ parse_operand (char *operand, ins * crx_ins)
   if ((ret_val = get_register (operand)) != nullregister)
     {
       cur_arg->type = arg_r;
-      cur_arg->r = ret_val;
+      cur_arg->r = (reg) ret_val;
       cur_arg->X_op = O_register;
       return;
     }
@@ -856,7 +856,7 @@ parse_operand (char *operand, ins * crx_ins)
       cur_arg->type = arg_copr;
       if (ret_val >= cs0)
 	cur_arg->type = arg_copsr;
-      cur_arg->cr = ret_val;
+      cur_arg->cr = (copreg) ret_val;
       cur_arg->X_op = O_register;
       return;
     }
@@ -1261,14 +1261,14 @@ print_operand (int nbits, int shift, argument *arg)
       if (arg->cr < c0 || arg->cr > c15)
 	as_bad (_("Illegal Co-processor register in Instruction `%s' "),
 		ins_parse);
-      CRX_PRINT (0, getreg_image (arg->cr), shift);
+      CRX_PRINT (0, getreg_image ((reg) arg->cr), shift);
       break;
 
     case arg_copsr:
       if (arg->cr < cs0 || arg->cr > cs15)
 	as_bad (_("Illegal Co-processor special register in Instruction `%s' "),
 		ins_parse);
-      CRX_PRINT (0, getreg_image (arg->cr), shift);
+      CRX_PRINT (0, getreg_image ((reg) arg->cr), shift);
       break;
 
     case arg_idxr:
@@ -1785,7 +1785,7 @@ preprocess_reglist (char *param, int *allocated)
           if (((cr = get_copregister (reg_name)) == nullcopregister)
 	      || (crx_copregtab[cr-MAX_REG].type != CRX_C_REGTYPE))
 	    as_fatal (_("Illegal register `%s' in cop-register list"), reg_name);
-	  mask_reg (getreg_image (cr - c0), &mask);
+	  mask_reg (getreg_image ((reg)(cr - c0)), &mask);
         }
       /* Coprocessor Special register cs<N>.  */
       else if (IS_INSN_TYPE (COPS_REG_INS))
@@ -1794,7 +1794,7 @@ preprocess_reglist (char *param, int *allocated)
 	      || (crx_copregtab[cr-MAX_REG].type != CRX_CS_REGTYPE))
 	    as_fatal (_("Illegal register `%s' in cop-special-register list"),
 		      reg_name);
-	  mask_reg (getreg_image (cr - cs0), &mask);
+	  mask_reg (getreg_image ((reg)(cr - cs0)), &mask);
         }
       /* User register u<N>.  */
       else if (instruction->flags & USER_REG)
@@ -1813,7 +1813,7 @@ preprocess_reglist (char *param, int *allocated)
 	      || (crx_regtab[r].type != CRX_U_REGTYPE))
 	    as_fatal (_("Illegal register `%s' in user register list"), reg_name);
 
-	  mask_reg (getreg_image (r - u0), &mask);
+	  mask_reg (getreg_image ((reg)(r - u0)), &mask);
 	}
       /* General purpose register r<N>.  */
       else
@@ -1832,7 +1832,7 @@ preprocess_reglist (char *param, int *allocated)
 	      || (crx_regtab[r].type != CRX_R_REGTYPE))
 	    as_fatal (_("Illegal register `%s' in register list"), reg_name);
 
-	  mask_reg (getreg_image (r - r0), &mask);
+	  mask_reg (getreg_image ((reg)(r - r0)), &mask);
         }
 
       if (++reg_counter > MAX_REGS_IN_MASK16)
