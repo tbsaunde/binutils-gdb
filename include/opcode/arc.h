@@ -116,7 +116,7 @@ struct arc_opcode
   unsigned cpu;
 
   /* The instruction class.  This is used by gdb.  */
-  insn_class_t class;
+  insn_class_t klass;
 
   /* The instruction subclass.  */
   insn_subclass_t subclass;
@@ -335,7 +335,7 @@ extern const unsigned arc_num_flag_operands;
 struct arc_flag_class
 {
   /* Flag class.  */
-  flag_class_t class;
+  flag_class_t klass;
 
   /* List of valid flags (codes).  */
   unsigned flags[256];
