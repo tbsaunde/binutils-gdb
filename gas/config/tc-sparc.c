@@ -2084,45 +2084,44 @@ sparc_ip (char *str, const struct sparc_opcode **pinsn)
 		    { "tie_ld", 6, BFD_RELOC_SPARC_TLS_IE_LD, 0 },
 		    { "tie_add", 7, BFD_RELOC_SPARC_TLS_IE_ADD, 0 },
 		    { "gdop", 4, BFD_RELOC_SPARC_GOTDATA_OP, 0 },
-		    { NULL, 0, 0, 0 }
 		  };
-		  const struct ops *o;
 		  char *s1;
 		  int npar = 0;
+		  unsigned int i;
 
-		  for (o = ops; o->name; o++)
-		    if (strncmp (s + 2, o->name, o->len) == 0)
+		  for (i = 0; i < ARRAY_SIZE (ops); i++)
+		    if (strncmp (s + 2, ops[i].name, ops[i].len) == 0)
 		      break;
-		  if (o->name == NULL)
+		  if (i == ARRAY_SIZE (ops))
 		    break;
 
-		  if (s[o->len + 2] != '(')
+		  if (s[ops[i].len + 2] != '(')
 		    {
-		      as_bad (_("Illegal operands: %%%s requires arguments in ()"), o->name);
+		      as_bad (_("Illegal operands: %%%s requires arguments in ()"), ops[i].name);
 		      return special_case;
 		    }
 
-		  if (! o->tls_call && the_insn.reloc != BFD_RELOC_NONE)
+		  if (! ops[i].tls_call && the_insn.reloc != BFD_RELOC_NONE)
 		    {
 		      as_bad (_("Illegal operands: %%%s cannot be used together with other relocs in the insn ()"),
-			      o->name);
+			      ops[i].name);
 		      return special_case;
 		    }
 
-		  if (o->tls_call
+		  if (ops[i].tls_call
 		      && (the_insn.reloc != BFD_RELOC_32_PCREL_S2
 			  || the_insn.exp.X_add_number != 0
 			  || the_insn.exp.X_add_symbol
 			     != symbol_find_or_make ("__tls_get_addr")))
 		    {
 		      as_bad (_("Illegal operands: %%%s can be only used with call __tls_get_addr"),
-			      o->name);
+			      ops[i].name);
 		      return special_case;
 		    }
 
-		  the_insn.reloc = o->reloc;
+		  the_insn.reloc = ops[i].reloc;
 		  memset (&the_insn.exp, 0, sizeof (the_insn.exp));
-		  s += o->len + 3;
+		  s += ops[i].len + 3;
 
 		  for (s1 = s; *s1 && *s1 != ',' && *s1 != ']'; s1++)
 		    if (*s1 == '(')
@@ -2136,7 +2135,7 @@ sparc_ip (char *str, const struct sparc_opcode **pinsn)
 
 		  if (*s1 != ')')
 		    {
-		      as_bad (_("Illegal operands: %%%s requires arguments in ()"), o->name);
+		      as_bad (_("Illegal operands: %%%s requires arguments in ()"), ops[i].name);
 		      return special_case;
 		    }
 
@@ -2571,26 +2570,25 @@ sparc_ip (char *str, const struct sparc_opcode **pinsn)
 			0, 0 },
 		      { "gdop_lox10", 10, BFD_RELOC_SPARC_GOTDATA_OP_LOX10,
 			0, 0 },
-		      { NULL, 0, 0, 0, 0 }
 		    };
-		    const struct ops *o;
+		    unsigned int i;
 
-		    for (o = ops; o->name; o++)
-		      if (strncmp (s + 1, o->name, o->len) == 0)
+		    for (i = 0; i < ARRAY_SIZE (ops); i++)
+		      if (strncmp (s + 1, ops[i].name, ops[i].len) == 0)
 			break;
-		    if (o->name == NULL)
+		    if (i == ARRAY_SIZE (ops))
 		      break;
 
-		    if (s[o->len + 1] != '(')
+		    if (s[ops[i].len + 1] != '(')
 		      {
-			as_bad (_("Illegal operands: %%%s requires arguments in ()"), o->name);
+			as_bad (_("Illegal operands: %%%s requires arguments in ()"), ops[i].name);
 			return special_case;
 		      }
 
-		    op_arg = o->name;
-		    the_insn.reloc = o->reloc;
-		    s += o->len + 2;
-		    v9_arg_p = o->v9_p;
+		    op_arg = ops[i].name;
+		    the_insn.reloc = ops[i].reloc;
+		    s += ops[i].len + 2;
+		    v9_arg_p = ops[i].v9_p;
 		  }
 
 		/* Note that if the get_expression() fails, we will still
