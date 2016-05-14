@@ -995,7 +995,7 @@ mn10300_check_fixup (struct mn10300_fixup *fixup)
       break;
 
     case O_PIC_reloc:
-      fixup->reloc = exp->X_md;
+      fixup->reloc = (bfd_reloc_code_real_type) exp->X_md;
       exp->X_op = O_symbol;
       if (fixup->reloc == BFD_RELOC_32_PLT_PCREL
 	  && fixup->opindex >= 0
