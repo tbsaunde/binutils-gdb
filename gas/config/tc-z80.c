@@ -651,8 +651,8 @@ parse_cc (const char *s, char * op)
       && ((s[i] == 0) || (s[i] == ',')))
     {
       buf[i] = 0;
-      cc_p = bsearch (&key, cc_tab, ARRAY_SIZE (cc_tab),
-		      sizeof (cc_tab[0]), key_cmp);
+      cc_p = (reg_entry *) bsearch (&key, cc_tab, ARRAY_SIZE (cc_tab),
+				    sizeof (cc_tab[0]), key_cmp);
     }
   else
     cc_p = NULL;
@@ -1936,7 +1936,7 @@ md_assemble (char* str)
       p = skip_space (p);
       key = buf;
 
-      insp = bsearch (&key, instab, ARRAY_SIZE (instab),
+      insp = (table_t *) bsearch (&key, instab, ARRAY_SIZE (instab),
 		    sizeof (instab[0]), key_cmp);
       if (!insp)
 	as_bad (_("Unknown instruction '%s'"), buf);
