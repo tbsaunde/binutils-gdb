@@ -4624,7 +4624,7 @@ s_arm_tls_descseq (int ignored ATTRIBUTE_UNUSED)
   /* Since we're just labelling the code, there's no need to define a
      mapping symbol.  */
   expression (&exp);
-  p = obstack_next_free (&frchain_now->frch_obstack);
+  p = (char *) obstack_next_free (&frchain_now->frch_obstack);
   fix_new_arm (frag_now, p - frag_now->fr_literal, 4, &exp, 0,
 	       thumb_mode ? BFD_RELOC_ARM_THM_TLS_DESCSEQ
 	       : BFD_RELOC_ARM_TLS_DESCSEQ);
