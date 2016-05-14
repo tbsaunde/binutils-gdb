@@ -14678,7 +14678,7 @@ do_neon_logic (void)
 			    : neon_select_shape (NS_DI, NS_QI, NS_NULL));
       struct neon_type_el et = neon_check_type (2, rs,
 	N_I8 | N_I16 | N_I32 | N_I64 | N_F32 | N_KEY, N_EQK);
-      enum neon_opc opcode = (enum neon_opc) inst.instruction & 0x0fffffff;
+      enum neon_opc opcode = (enum neon_opc) (inst.instruction & 0x0fffffff);
       unsigned immbits;
       int cmode;
 
