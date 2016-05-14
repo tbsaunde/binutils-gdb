@@ -1049,7 +1049,8 @@ md_convert_frag (bfd *   abfd ATTRIBUTE_UNUSED,
   rl78_bytesT * rl78b = fragP->tc_frag_data;
   addressT addr0, mypc;
   int disp;
-  int reloc_type, reloc_adjust;
+  int reloc_adjust;
+  bfd_reloc_code_real_type reloc_type;
   char * op = fragP->fr_opcode;
   int keep_reloc = 0;
   int ri;
@@ -1220,6 +1221,8 @@ md_convert_frag (bfd *   abfd ATTRIBUTE_UNUSED,
 	case BFD_RELOC_16_PCREL:
 	  fix->fx_size = 2;
 	  break;
+	default:
+	  abort();
 	}
     }
 
