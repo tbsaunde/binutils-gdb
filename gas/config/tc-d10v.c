@@ -478,7 +478,7 @@ get_operands (expressionS exp[])
       break;
     }
 
-  exp[numops].X_op = 0;
+  exp[numops].X_op = O_illegal;
   return numops;
 }
 
@@ -1280,7 +1280,7 @@ find_opcode (struct d10v_opcode *opcode, expressionS myops[])
       for (i = 0; opcode->operands[i]; i++)
 	{
 	  int flags = d10v_operands[opcode->operands[i]].flags;
-	  int X_op = myops[i].X_op;
+	  operatorT X_op = myops[i].X_op;
 	  int num = myops[i].X_add_number;
 
 	  if (X_op == 0)
@@ -1341,7 +1341,7 @@ find_opcode (struct d10v_opcode *opcode, expressionS myops[])
 
       /* We're only done if the operands matched so far AND there
 	     are no more to check.  */
-      if (match && myops[i].X_op == 0)
+      if (match && myops[i].X_op == O_illegal)
 	break;
       else
 	match = 0;
