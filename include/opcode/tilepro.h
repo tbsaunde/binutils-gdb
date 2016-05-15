@@ -1469,7 +1469,7 @@ struct tilepro_operand
   tilepro_operand_type type;
 
   /* The default relocation type for this operand.  */
-  signed int default_reloc : 16;
+  bfd_reloc_code_real_type default_reloc : 16;
 
   /* How many bits is this value? (used for range checking) */
   unsigned int num_bits : 5;
