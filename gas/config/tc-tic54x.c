@@ -4691,8 +4691,8 @@ subsym_substitute (char *line, int forced)
 		    }
 		  name[-1] = 0;
 		}
-	      tmp = xmalloc (strlen (head) + strlen (value) +
-			     strlen (tail + 1) + 2);
+	      tmp = (char *) xmalloc (strlen (head) + strlen (value) +
+				      strlen (tail + 1) + 2);
 	      strcpy (tmp, head);
 	      strcat (tmp, value);
 	      /* Make sure forced substitutions are properly terminated.  */
