@@ -113,7 +113,7 @@ typedef struct _template
 #define MMRX(OP)        ((((OP)>>4)&0xF)+16)
 #define MMRY(OP)        (((OP)&0xF)+16)
 
-#define OPTYPE(X)       ((X)&~OPT)
+#define OPTYPE(X)       (optype) ((X)&~OPT)
 
   /* Ones in this mask indicate which bits must match the opcode field.
      Zeroes indicate don't care bits (operands and/or opcode options) */
