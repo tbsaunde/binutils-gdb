@@ -2293,7 +2293,7 @@ tic54x_mlib (int ignore ATTRIBUTE_UNUSED)
 	  ++len;
 	}
       obstack_1grow (&notes, '\0');
-      filename = obstack_finish (&notes);
+      filename = (char *) obstack_finish (&notes);
     }
   demand_empty_rest_of_line ();
 
