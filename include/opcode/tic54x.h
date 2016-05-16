@@ -26,7 +26,7 @@ typedef struct _symbol
 {
   const char *name;
   unsigned short value;
-} symbol;
+} tic54x_symbol;
 
 enum optype {
   OPT = 0x8000,
