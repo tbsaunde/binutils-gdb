@@ -492,7 +492,8 @@ xstormy16_md_apply_fix (fixS *   fixP,
       /* FIXME: This duplicates the capabilities of code in BFD.  */
       if (fixP->fx_done)
 	{
-	  CGEN_FIELDS *fields = xmalloc (CGEN_CPU_SIZEOF_FIELDS (cd));
+	  CGEN_FIELDS *fields = (CGEN_FIELDS *)
+	    xmalloc (CGEN_CPU_SIZEOF_FIELDS (cd));
 
 	  CGEN_CPU_SET_FIELDS_BITSIZE (cd) (fields, CGEN_INSN_BITSIZE (insn));
 	  CGEN_CPU_SET_VMA_OPERAND (cd) (cd, opindex, fields, (bfd_vma) value);
