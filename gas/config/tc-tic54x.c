@@ -2301,14 +2301,14 @@ tic54x_mlib (int ignore ATTRIBUTE_UNUSED)
 
   for (i = 0; i < include_dir_count; i++)
     {
-      FILE *try;
+      FILE *file;
 
       strcpy (path, include_dirs[i]);
       strcat (path, "/");
       strcat (path, filename);
-      if ((try = fopen (path, "r")) != NULL)
+      if ((file = fopen (path, "r")) != NULL)
 	{
-	  fclose (try);
+	  fclose (file);
 	  break;
 	}
     }
