@@ -152,7 +152,7 @@ struct v850_operand
   /* One bit syntax flags.  */
   int flags;
 
-  int default_reloc;
+  bfd_reloc_code_real_type default_reloc;
 };
 
 /* Elements in the table are retrieved by indexing with values from
